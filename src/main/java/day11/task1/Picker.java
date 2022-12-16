@@ -1,7 +1,8 @@
 package day11.task1;
 
-public class Picker extends Warehouse implements Worker{
+public class Picker implements Worker{
     private int salary;
+    private final int SALARY_PICKER = 80;
     private boolean isPayed;
     private Warehouse warehouse;
 
@@ -9,9 +10,7 @@ public class Picker extends Warehouse implements Worker{
         return salary;
     }
 
-    public Picker(int salary, boolean isPayed, Warehouse warehouse) {
-        this.salary = salary;
-        this.isPayed = isPayed;
+    public Picker(Warehouse warehouse) {
         this.warehouse = warehouse;
     }
 
@@ -21,16 +20,28 @@ public class Picker extends Warehouse implements Worker{
 
     @Override
     public String toString() {
-        String salaryPayed;
-        if (isPayed) {
-            salaryPayed = "Да";
-        } else salaryPayed = "Нет";
-        return "Зарплата сбощика: " + salary + ", Выплачена: " + salaryPayed;
+        return "Зарплата сбощика: " + SALARY_PICKER + ", Выплачено: " + getSalary();
     }
 
     @Override
     public void doWork() {
-        System.out.println("Сборщику выплачена зп: "+getSalary());
+        salary+=SALARY_PICKER;
         this.warehouse.countPickedOrders++;
+        if (warehouse.countPickedOrders == 10000) {
+            bonus();
+            this.warehouse.countPickedOrders++;
+        }
     }
+
+    @Override
+    public void bonus() {
+        if (warehouse.countPickedOrders == 10000) {
+            System.out.println("Сборщик получает премию!");
+            salary += 70000;
+        }
+        else if (warehouse.countPickedOrders < 10000)
+            System.out.println("Бонус пока недоступен!");
+        else System.out.println("Бонус уже выплачен!");
+    }
+
 }

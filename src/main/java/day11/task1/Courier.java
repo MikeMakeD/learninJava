@@ -1,8 +1,14 @@
 package day11.task1;
 
-public class Courier extends Warehouse{
+public class Courier implements Worker{
     private int salary;
+    private static final int SALARY_COURIER = 100;
     private boolean isPayed;
+    private Warehouse warehouseC;
+
+    public Courier(Warehouse warehouseC) {
+        this.warehouseC = warehouseC;
+    }
 
     public int getSalary() {
         return salary;
@@ -19,10 +25,27 @@ public class Courier extends Warehouse{
 
     @Override
     public String toString() {
-        String salaryPayed;
-        if (isPayed) {
-            salaryPayed = "Да";
-        } else salaryPayed = "Нет";
-        return "Зарплата доставщика: " + salary + ", Выплачена: " + salaryPayed;
+        return "Зарплата курьера: " + SALARY_COURIER + ", Выплачена: " + getSalary();
+    }
+
+    @Override
+    public void doWork() {
+        salary+=SALARY_COURIER;
+        this.warehouseC.countDeliveredOrders++;
+        if (warehouseC.countDeliveredOrders == 10000) {
+            bonus();
+            this.warehouseC.countDeliveredOrders++;
+        }
+    }
+
+    @Override
+    public void bonus() {
+        if (warehouseC.countDeliveredOrders == 10000) {
+            System.out.println("Курьер получает премию!");
+            salary += 70000;
+        }
+        else if (warehouseC.countDeliveredOrders < 10000)
+            System.out.println("Бонус пока недоступен!");
+        else System.out.println("Бонус уже выплачен!");
     }
 }
