@@ -46,11 +46,7 @@ class Automobile {
         System.out.println("Это автомобиль");
     }
     protected int yearDifference(int inputYear){
-        int age = yearRelease-inputYear;
-        if(age<=0){
-            age = age*-1;
-        }
-        return age;
+        return Math.abs(yearRelease-inputYear);
     }
 
 }

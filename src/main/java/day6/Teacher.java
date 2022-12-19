@@ -34,9 +34,10 @@ public class Teacher {
             case (4):
                  grade ="хорошо";
                  break;
-            case (5):
-                 grade ="отлично";
-                 break;
+            default:
+                grade ="отлично";
+                break;
+
         }
 
         System.out.println("Преподователь "+getName()+" оценил студента с именем "+student.getName()+" по предмету " + getSubject()+ " на оценку "+grade);

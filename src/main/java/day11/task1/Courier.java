@@ -5,6 +5,8 @@ public class Courier implements Worker{
     private static final int SALARY_COURIER = 100;
     private boolean isPayed;
     private Warehouse warehouseC;
+    private final int LIMIT_PREMIUM = 10000;
+    private final int SUM_PREMIUM = 50000;
 
     public Courier(Warehouse warehouseC) {
         this.warehouseC = warehouseC;
@@ -32,7 +34,7 @@ public class Courier implements Worker{
     public void doWork() {
         salary+=SALARY_COURIER;
         this.warehouseC.countDeliveredOrders++;
-        if (warehouseC.countDeliveredOrders == 10000) {
+        if (warehouseC.countDeliveredOrders == LIMIT_PREMIUM) {
             bonus();
             this.warehouseC.countDeliveredOrders++;
         }
@@ -40,11 +42,11 @@ public class Courier implements Worker{
 
     @Override
     public void bonus() {
-        if (warehouseC.countDeliveredOrders == 10000) {
+        if (warehouseC.countDeliveredOrders == LIMIT_PREMIUM) {
             System.out.println("Курьер получает премию!");
-            salary += 70000;
+            salary += SUM_PREMIUM;
         }
-        else if (warehouseC.countDeliveredOrders < 10000)
+        else if (warehouseC.countDeliveredOrders < LIMIT_PREMIUM)
             System.out.println("Бонус пока недоступен!");
         else System.out.println("Бонус уже выплачен!");
     }

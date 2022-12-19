@@ -5,7 +5,6 @@ public class Paladin extends Hero implements PhysAttack,Healer{
     double healTeam;
 
     public Paladin() {
-        health = 100;
         physDef = 0.5;
         magicDef = 0.2;
         physAtt = 15;
@@ -37,13 +36,4 @@ public class Paladin extends Hero implements PhysAttack,Healer{
         }
     }
 
-    @Override
-    public void physAttack(Hero hero) {
-        double sumAttack=(this.physAtt * (1 - hero.physDef));
-        if ((hero.health-sumAttack)< 0) {
-            hero.health = 0;
-        } else {
-            hero.health -= sumAttack;
-        }
-    }
 }

@@ -1,10 +1,9 @@
 package day11.task2;
 
 public class Magician extends Hero implements PhysAttack,MagicAttack{
-
+    double magicAtt;
 
     public Magician() {
-        health = 100;
         magicDef = 0.8;
         physDef = 0;
         physAtt = 5;
@@ -26,13 +25,5 @@ public class Magician extends Hero implements PhysAttack,MagicAttack{
         }
     }
 
-    @Override
-    public void physAttack(Hero hero) {
-        double sumAttack=(this.physAtt * (1 - hero.physDef));
-        if ((hero.health-sumAttack)< 0) {
-            hero.health = 0;
-        } else {
-            hero.health -= sumAttack;
-        }
-    }
+
 }

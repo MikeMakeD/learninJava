@@ -24,7 +24,7 @@ class Airplane {
         System.out.println("Изготовитель: "+name+ ", год выпуска: "+year+", длина: "+length +", вес:"+weight +", количество топлива в баке: "+ fuel);
     }
     void fillUp(int n){
-        setFuel(getFuel()+n);
+        fuel+=n;
     }
 
     public int getFuel() {

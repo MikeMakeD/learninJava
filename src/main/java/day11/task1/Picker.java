@@ -5,6 +5,8 @@ public class Picker implements Worker{
     private final int SALARY_PICKER = 80;
     private boolean isPayed;
     private Warehouse warehouse;
+    private final int LIMIT_PREMIUM = 10000;
+    private final int SUM_PREMIUM = 70000;
 
     public int getSalary() {
         return salary;
@@ -27,7 +29,7 @@ public class Picker implements Worker{
     public void doWork() {
         salary+=SALARY_PICKER;
         this.warehouse.countPickedOrders++;
-        if (warehouse.countPickedOrders == 10000) {
+        if (warehouse.countPickedOrders == LIMIT_PREMIUM) {
             bonus();
             this.warehouse.countPickedOrders++;
         }
@@ -35,11 +37,11 @@ public class Picker implements Worker{
 
     @Override
     public void bonus() {
-        if (warehouse.countPickedOrders == 10000) {
+        if (warehouse.countPickedOrders == LIMIT_PREMIUM) {
             System.out.println("Сборщик получает премию!");
-            salary += 70000;
+            salary += SUM_PREMIUM;
         }
-        else if (warehouse.countPickedOrders < 10000)
+        else if (warehouse.countPickedOrders < LIMIT_PREMIUM)
             System.out.println("Бонус пока недоступен!");
         else System.out.println("Бонус уже выплачен!");
     }
