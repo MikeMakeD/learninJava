@@ -1,4 +1,4 @@
-package day12.task3;
+package day12.task4.task3;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package day12.task3;
+package day12.task4.task3;
 
 public class MusicBand {
     private String name;
