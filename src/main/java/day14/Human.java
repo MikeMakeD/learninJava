@@ -20,6 +20,11 @@ public class Human {
         this.age = age;
     }
 
+    public Human(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "Human{" +

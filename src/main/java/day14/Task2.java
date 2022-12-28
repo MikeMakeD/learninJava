@@ -9,45 +9,28 @@ import java.util.Scanner;
 
 public class Task2 {
     public static void main(String[] args) {
-        File file = new File("people1");
+        File file = new File("people");
         System.out.println(parseFileToString(file));
 
 
     }
-    public static List<String> parseFileToString(File file){
+
+    public static List<String> parseFileToString(File file) {
         List<String> peopleList = new ArrayList<>();
         Scanner scanner;
         try {
-            StringBuilder stringBuilder = new StringBuilder();
             scanner = new Scanner(file);
-            String tempStr ="";
-            while (scanner.hasNextLine()){
-                tempStr = scanner.nextLine();
-                peopleList.add(tempStr);
-                stringBuilder.append(tempStr);
-                stringBuilder.append(" ");
+            while (scanner.hasNextLine()) {
+                peopleList.add(scanner.nextLine());
+                String[] strings = peopleList.get(0).split(" ");
+                if (Integer.parseInt(strings[1]) == 0) throw new Exception();
             }
-            List<String> stringsList = new ArrayList<>();
-            String str = stringBuilder.toString();
-            stringsList = Arrays.asList(str.split(" "));
-            for (int i = 1; i <stringsList.size() ; i+=2) {
-                int temp = Integer.parseInt(stringsList.get(i));
-                if(temp<0){
-                    try {
-                        throw new Exception();
-                    } catch (Exception e) {
-                        System.out.println("Некорректный входной файл");
-                        return null;
-                    }
-                }
-            }
-
-
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
-
+        } catch (Exception e) {
+            System.out.println("Некорректный входной файл");
+            return null;
         }
-
         return peopleList;
     }
 

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Task1 {
     public static void main(String[] args) {
-        File file = new File("text23");
+        File file = new File("text");
         printSumDigits(file);
 
     }
@@ -18,27 +18,17 @@ public class Task1 {
             while (scanner.hasNextLine()) {
                 String input = scanner.nextLine();
                 String[] numbersWord = input.split(" ");
-                if(numbersWord.length != 10){
-                    try {
-                        throw new Exception();
-                    } catch (Exception e) {
-                        System.out.println("Некорректный входной файл");
-                        break;
-                    }
-                }
-                int [] numbers = new int[10];
-                int count =0;
-                for(String string: numbersWord){
-                    numbers[count++] = Integer.parseInt(string);
-                }
+                if(numbersWord.length != 10) throw new Exception();
                 int sum=0;
-                for(int integer: numbers){
-                    sum+=integer;
+                for (int i = 0; i < numbersWord.length; i++) {
+                    sum+=Integer.parseInt(numbersWord[i]);
                 }
                 System.out.println(sum);
             }
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
+        } catch (Exception e) {
+            System.out.println("Некорректный входной файл");
         }
 
     }

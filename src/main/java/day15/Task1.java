@@ -21,27 +21,16 @@ public class Task1 {
                     list.add(temp);
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        System.out.println(list);
-
-        File file1 = new File("D:\\JavaMarathon2021\\src\\main\\resources\\missing_shoes.txt");
-        try {
+            File file1 = new File("D:\\JavaMarathon2021\\src\\main\\resources\\missing_shoes.txt");
             file1.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        System.out.println(asd);
-        try {
             PrintWriter pw = new PrintWriter(file1);
-            for(String shoes: list){
+            for (String shoes : list) {
                 pw.println(shoes);
             }
-        } catch (FileNotFoundException e) {
+            pw.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
 
